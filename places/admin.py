@@ -4,7 +4,6 @@ from django.utils.html import format_html
 from adminsortable2.admin import SortableInlineAdminMixin
 
 from .models import Place, PlaceImage
-# Register your models here.
 
 
 class PlaceImageInline(SortableInlineAdminMixin, admin.TabularInline):
@@ -13,7 +12,10 @@ class PlaceImageInline(SortableInlineAdminMixin, admin.TabularInline):
     extra = 0
 
     def preview(self, image):
-        return format_html('<img src="{}" height="200"></img>', image.image.url)
+        if image.image:
+            return format_html('<img src="{}" height="200"></img>', image.image.url)
+        else:
+            return format_html('Здесь будет превью, когда вы выберете файл')
 
 
 @admin.register(Place)
