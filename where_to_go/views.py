@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.urls import reverse
 
 from places.models import Place
 
@@ -19,7 +20,7 @@ def start_page(request):
                               "properties": {
                                   "title": place.title,
                                   "placeId": place.id,
-                                  "detailsUrl": "1"
+                                  "detailsUrl": reverse('place_detail', args=(place.pk,))
                               }
                           } for place in places
                       ]
