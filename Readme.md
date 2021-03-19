@@ -2,7 +2,7 @@
 
 Карта с самыми интересными местами в Москве.
 
-[сайт на pythonanywhere](https://wenny17.pythonanywhere.com/).
+[сайт на pythonanywhere](https://wenny171.pythonanywhere.com/).
 
 ## Как запустить
 
