@@ -1,10 +1,12 @@
 from django.db import models
 
+from tinymce.models import HTMLField
+
 
 class Place(models.Model):
     title = models.CharField(verbose_name="Заголовок", max_length=200)
-    description_short = models.CharField(verbose_name="Краткое описание", max_length=200, blank=True)
-    description_long = models.TextField(verbose_name="Описание", blank=True)
+    description_short = models.TextField(verbose_name="Краткое описание", blank=True)
+    description_long = HTMLField(verbose_name="Описание")
     lat = models.DecimalField(verbose_name="Широта", max_digits=10, decimal_places=8)
     lng = models.DecimalField(verbose_name="Долгота", max_digits=11, decimal_places=8)
 
@@ -19,7 +21,7 @@ class Place(models.Model):
 class PlaceImage(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name="images")
     image = models.ImageField(upload_to='photos/')
-    order = models.IntegerField('Позиция', default=0, blank=False, null=False)
+    order = models.IntegerField('Позиция', default=0, blank=False)
 
     class Meta:
         ordering = ['order']
